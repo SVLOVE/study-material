@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'home_dashboard_screen.dart';
 import '../../syllabus/screens/syllabus_screen.dart';
+import '../../profile/screens/edit_profile_screen.dart';
 
 class MainLayoutScreen extends StatefulWidget {
   const MainLayoutScreen({super.key});
@@ -17,7 +18,7 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
     const HomeDashboardScreen(),
     const SyllabusScreen(),
     Container(decoration: const BoxDecoration(gradient: LinearGradient(colors: [Color(0xFF1A1A2E), Color(0xFF16213E), Color(0xFF0F3460)], begin: Alignment.topLeft, end: Alignment.bottomRight)), child: const Center(child: Text('Practice Section Coming Soon!', style: TextStyle(color: Colors.cyanAccent, fontSize: 20)))),
-    Container(decoration: const BoxDecoration(gradient: LinearGradient(colors: [Color(0xFF1A1A2E), Color(0xFF16213E), Color(0xFF0F3460)], begin: Alignment.topLeft, end: Alignment.bottomRight)), child: const Center(child: Text('Profile Section Coming Soon!', style: TextStyle(color: Colors.purpleAccent, fontSize: 20)))),
+    const EditProfileScreen(),
   ];
 
   @override
@@ -54,3 +55,4 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
     );
   }
 }
+

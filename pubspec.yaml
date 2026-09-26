@@ -41,6 +41,7 @@ dependencies:
   device_info_plus: ^13.2.0
   file_picker: ^13.1.0
   syncfusion_flutter_pdfviewer: ^34.2.9
+  flutter_windowmanager: ^0.2.0
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +53,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.8
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -97,3 +100,19 @@ flutter:
 
   assets:
     - .env
+    - assets/images/app_logo.jpg
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/app_logo.jpg"
+
+
+
+flutter_native_splash:
+  color: "#0F2027"
+  image: "assets/images/app_logo.jpg"
+  android_12:
+    image: "assets/images/app_logo.jpg"
+    color: "#0F2027"
+

@@ -72,7 +72,7 @@ class AdminDashboardScreen extends StatelessWidget {
                         title: 'Manage Users',
                         color: Colors.greenAccent,
                         onTap: () {
-                          context.push('/admin/manage-materials');
+                            context.push('/admin/manage-users');
                         },
                       ),
                     ],
@@ -107,5 +107,8 @@ class AdminDashboardScreen extends StatelessWidget {
     );
   }
 }
+
+
+
 
 

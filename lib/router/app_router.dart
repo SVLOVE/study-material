@@ -13,6 +13,8 @@ import '../features/onboarding/screens/exam_selection_screen.dart';
 import '../features/home/screens/main_layout_screen.dart';
 import '../features/admin/screens/admin_upload_screen.dart';
 import '../features/admin/screens/admin_manage_materials_screen.dart';
+import '../features/admin/screens/admin_manage_users_screen.dart';
+import '../features/profile/screens/edit_profile_screen.dart';
 import '../features/admin/screens/admin_dashboard_screen.dart';
 import '../features/materials/screens/study_materials_screen.dart';
 import '../features/materials/screens/pdf_viewer_screen.dart';
@@ -111,8 +113,19 @@ final GoRouter appRouter = GoRouter(
       path: '/admin/upload',
       builder: (context, state) => const AdminUploadScreen(),
     ),
+      GoRoute(
+        path: '/admin/manage-users',
+        builder: (context, state) => const AdminManageUsersScreen(),
+      ),
+      GoRoute(
+        path: '/profile/edit',
+        builder: (context, state) => const EditProfileScreen(),
+      ),
   ],
 );
+
+
+
 
 
 
