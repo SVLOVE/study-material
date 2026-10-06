@@ -1,3 +1,4 @@
+﻿import '../features/admin/screens/admin_manage_syllabus_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -92,6 +93,10 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => const AdminDashboardScreen(),
     ),
     GoRoute(
+      path: '/admin/manage-syllabus',
+      builder: (context, state) => const AdminManageSyllabusScreen(),
+    ),
+    GoRoute(
       path: '/study-materials',
       builder: (context, state) => const StudyMaterialsScreen(),
     ),
@@ -113,20 +118,13 @@ final GoRouter appRouter = GoRouter(
       path: '/admin/upload',
       builder: (context, state) => const AdminUploadScreen(),
     ),
-      GoRoute(
-        path: '/admin/manage-users',
-        builder: (context, state) => const AdminManageUsersScreen(),
-      ),
-      GoRoute(
-        path: '/profile/edit',
-        builder: (context, state) => const EditProfileScreen(),
-      ),
+    GoRoute(
+      path: '/admin/manage-users',
+      builder: (context, state) => const AdminManageUsersScreen(),
+    ),
+    GoRoute(
+      path: '/profile/edit',
+      builder: (context, state) => const EditProfileScreen(),
+    ),
   ],
 );
-
-
-
-
-
-
-

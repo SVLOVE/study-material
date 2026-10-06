@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -80,6 +80,15 @@ class AdminDashboardScreen extends StatelessWidget {
                         color: Colors.greenAccent,
                         onTap: () {
                           context.push('/admin/manage-users');
+                        },
+                      ),
+                      _buildAdminCard(
+                        context,
+                        icon: Icons.library_books,
+                        title: 'Manage Syllabus',
+                        color: Colors.orangeAccent,
+                        onTap: () {
+                          context.push('/admin/manage-syllabus');
                         },
                       ),
                     ],
