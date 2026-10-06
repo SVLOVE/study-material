@@ -1,7 +1,7 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../../../core/widgets/glass_container.dart';
 
 class AdminDashboardScreen extends StatelessWidget {
@@ -12,7 +12,10 @@ class AdminDashboardScreen extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Admin Dashboard', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Admin Dashboard',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
@@ -41,7 +44,11 @@ class AdminDashboardScreen extends StatelessWidget {
               children: [
                 const Text(
                   'Welcome, Sakthi!',
-                  style: TextStyle(color: Colors.cyanAccent, fontSize: 24, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    color: Colors.cyanAccent,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 30),
                 Expanded(
@@ -72,7 +79,7 @@ class AdminDashboardScreen extends StatelessWidget {
                         title: 'Manage Users',
                         color: Colors.greenAccent,
                         onTap: () {
-                            context.push('/admin/manage-users');
+                          context.push('/admin/manage-users');
                         },
                       ),
                     ],
@@ -86,7 +93,13 @@ class AdminDashboardScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildAdminCard(BuildContext context, {required IconData icon, required String title, required Color color, required VoidCallback onTap}) {
+  Widget _buildAdminCard(
+    BuildContext context, {
+    required IconData icon,
+    required String title,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: GlassContainer(
@@ -99,7 +112,11 @@ class AdminDashboardScreen extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),
@@ -107,8 +124,3 @@ class AdminDashboardScreen extends StatelessWidget {
     );
   }
 }
-
-
-
-
-

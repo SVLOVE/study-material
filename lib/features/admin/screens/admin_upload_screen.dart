@@ -1,8 +1,10 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../core/widgets/glass_container.dart';
 import '../../../core/widgets/glow_button.dart';
 
@@ -16,7 +18,7 @@ class AdminUploadScreen extends StatefulWidget {
 class _AdminUploadScreenState extends State<AdminUploadScreen> {
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
-  
+
   List<dynamic> _exams = [];
   String? _selectedExamId;
   File? _selectedFile;
@@ -32,7 +34,9 @@ class _AdminUploadScreenState extends State<AdminUploadScreen> {
 
   Future<void> _fetchExams() async {
     try {
-      final response = await Supabase.instance.client.from('exams').select('id, name');
+      final response = await Supabase.instance.client
+          .from('exams')
+          .select('id, name');
       if (mounted) {
         setState(() {
           _exams = response;
@@ -50,7 +54,7 @@ class _AdminUploadScreenState extends State<AdminUploadScreen> {
       allowedExtensions: ['pdf'],
     );
 
-    if (result != null && result.isNotEmpty && result.first.path != null) {
+    if (result.isNotEmpty && result.first.path != null) {
       setState(() {
         _selectedFile = File(result.first.path!);
       });
@@ -58,9 +62,13 @@ class _AdminUploadScreenState extends State<AdminUploadScreen> {
   }
 
   Future<void> _uploadMaterial() async {
-    if (_titleController.text.trim().isEmpty || _selectedExamId == null || _selectedFile == null) {
+    if (_titleController.text.trim().isEmpty ||
+        _selectedExamId == null ||
+        _selectedFile == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please select an Exam, fill Title, and pick a PDF.')),
+        const SnackBar(
+          content: Text('Please select an Exam, fill Title, and pick a PDF.'),
+        ),
       );
       return;
     }
@@ -71,8 +79,9 @@ class _AdminUploadScreenState extends State<AdminUploadScreen> {
     });
 
     try {
-      final fileName = '${DateTime.now().millisecondsSinceEpoch}_${_selectedFile!.path.split('/').last}';
-      
+      final fileName =
+          '${DateTime.now().millisecondsSinceEpoch}_${_selectedFile!.path.split('/').last}';
+
       // 1. Upload to Storage
       await Supabase.instance.client.storage
           .from('materials')
@@ -109,9 +118,8 @@ class _AdminUploadScreenState extends State<AdminUploadScreen> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Upload failed: $e')),
-        );
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Upload failed: $e')));
       }
     } finally {
       if (mounted) {
@@ -128,7 +136,10 @@ class _AdminUploadScreenState extends State<AdminUploadScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Admin: Upload Material', style: TextStyle(color: Colors.white)),
+        title: const Text(
+          'Admin: Upload Material',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -148,7 +159,10 @@ class _AdminUploadScreenState extends State<AdminUploadScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Text('Select Exam Category', style: TextStyle(color: Colors.white70)),
+                  const Text(
+                    'Select Exam Category',
+                    style: TextStyle(color: Colors.white70),
+                  ),
                   const SizedBox(height: 8),
                   if (_isLoadingExams)
                     const CircularProgressIndicator(color: Colors.cyanAccent)
@@ -157,12 +171,18 @@ class _AdminUploadScreenState extends State<AdminUploadScreen> {
                       dropdownColor: const Color(0xFF16213E),
                       style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white.withOpacity(0.3))),
-                        focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.cyanAccent)),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white.withValues(alpha: 0.3),
+                          ),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.cyanAccent),
+                        ),
                         filled: true,
-                        fillColor: Colors.black.withOpacity(0.1),
+                        fillColor: Colors.black.withValues(alpha: 0.1),
                       ),
-                      value: _selectedExamId,
+                      initialValue: _selectedExamId,
                       items: _exams.map((exam) {
                         return DropdownMenuItem<String>(
                           value: exam['id'],
@@ -178,10 +198,16 @@ class _AdminUploadScreenState extends State<AdminUploadScreen> {
                     decoration: InputDecoration(
                       labelText: 'Material Title',
                       labelStyle: const TextStyle(color: Colors.white70),
-                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white.withOpacity(0.3))),
-                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.cyanAccent)),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.white.withValues(alpha: 0.3),
+                        ),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.cyanAccent),
+                      ),
                       filled: true,
-                      fillColor: Colors.black.withOpacity(0.1),
+                      fillColor: Colors.black.withValues(alpha: 0.1),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -191,10 +217,16 @@ class _AdminUploadScreenState extends State<AdminUploadScreen> {
                     decoration: InputDecoration(
                       labelText: 'Description (Optional)',
                       labelStyle: const TextStyle(color: Colors.white70),
-                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white.withOpacity(0.3))),
-                      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.cyanAccent)),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.white.withValues(alpha: 0.3),
+                        ),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.cyanAccent),
+                      ),
                       filled: true,
-                      fillColor: Colors.black.withOpacity(0.1),
+                      fillColor: Colors.black.withValues(alpha: 0.1),
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -203,18 +235,26 @@ class _AdminUploadScreenState extends State<AdminUploadScreen> {
                     child: Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.cyanAccent, style: BorderStyle.solid),
+                        border: Border.all(
+                          color: Colors.cyanAccent,
+                          style: BorderStyle.solid,
+                        ),
                         borderRadius: BorderRadius.circular(12),
-                        color: Colors.cyanAccent.withOpacity(0.1),
+                        color: Colors.cyanAccent.withValues(alpha: 0.1),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(Icons.picture_as_pdf, color: Colors.cyanAccent),
+                          const Icon(
+                            Icons.picture_as_pdf,
+                            color: Colors.cyanAccent,
+                          ),
                           const SizedBox(width: 8),
                           Expanded(
                             child: Text(
-                              _selectedFile == null ? 'Select PDF File' : _selectedFile!.path.split('/').last,
+                              _selectedFile == null
+                                  ? 'Select PDF File'
+                                  : _selectedFile!.path.split('/').last,
                               style: const TextStyle(color: Colors.cyanAccent),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -227,9 +267,15 @@ class _AdminUploadScreenState extends State<AdminUploadScreen> {
                   if (_isUploading)
                     Column(
                       children: [
-                        LinearProgressIndicator(value: _uploadProgress, color: Colors.purpleAccent),
+                        LinearProgressIndicator(
+                          value: _uploadProgress,
+                          color: Colors.purpleAccent,
+                        ),
                         const SizedBox(height: 8),
-                        Text('Uploading... \%', style: const TextStyle(color: Colors.white)),
+                        Text(
+                          'Uploading... %',
+                          style: const TextStyle(color: Colors.white),
+                        ),
                       ],
                     )
                   else
