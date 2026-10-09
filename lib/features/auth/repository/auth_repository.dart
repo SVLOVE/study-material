@@ -26,8 +26,33 @@ class AuthRepository {
     );
   }
 
+  Future<AuthResponse> verifyOTP({required String email, required String token, required OtpType type}) async {
+    final response = await _supabase.auth.verifyOTP(
+      email: email,
+      token: token,
+      type: type,
+    );
+    if (response.user != null) {
+      await _registerDevice(response.user!.id);
+    }
+    return response;
+  }
+
+  Future<void> resendOTP({required String email, required OtpType type}) async {
+    await _supabase.auth.resend(
+      email: email,
+      type: type,
+    );
+  }
+
   Future<void> resetPasswordForEmail(String email) async {
     await _supabase.auth.resetPasswordForEmail(email, redirectTo: 'govprep://login-callback');
+  }
+
+  Future<void> updatePassword(String newPassword) async {
+    await _supabase.auth.updateUser(
+      UserAttributes(password: newPassword),
+    );
   }
 
   Future<void> signOut() async {

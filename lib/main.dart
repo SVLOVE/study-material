@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'core/theme/app_theme.dart';
+import 'core/theme/theme_provider.dart';
 import 'router/app_router.dart';
 
 void main() async {
@@ -11,7 +12,7 @@ void main() async {
 
   await Supabase.initialize(
     url: dotenv.env['SUPABASE_URL']!.trim(),
-    anonKey: dotenv.env['SUPABASE_ANON_KEY']!.trim(),
+    publishableKey: dotenv.env['SUPABASE_ANON_KEY']!.trim(),
   );
 
   runApp(
@@ -46,7 +47,7 @@ class _GovPrepAppState extends ConsumerState<GovPrepApp> {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.light, // Forced to light theme as per user request
+      themeMode: ref.watch(themeModeProvider),
       routerConfig: appRouter,
     );
   }

@@ -1,7 +1,7 @@
-﻿import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../core/widgets/glass_container.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../core/widgets/glow_button.dart';
 
 class CreateProfileScreen extends StatefulWidget {
@@ -81,7 +81,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                           labelStyle: const TextStyle(color: Colors.white70),
                           prefixIcon: const Icon(Icons.person, color: Colors.white70),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white.withOpacity(0.3)),
+                            borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.3)),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -89,7 +89,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           filled: true,
-                          fillColor: Colors.black.withOpacity(0.1),
+                          fillColor: Colors.black.withValues(alpha: 0.1),
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -102,7 +102,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                           labelStyle: const TextStyle(color: Colors.white70),
                           prefixIcon: const Icon(Icons.phone, color: Colors.white70),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white.withOpacity(0.3)),
+                            borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.3)),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -110,7 +110,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           filled: true,
-                          fillColor: Colors.black.withOpacity(0.1),
+                          fillColor: Colors.black.withValues(alpha: 0.1),
                         ),
                       ),
                       const SizedBox(height: 32),

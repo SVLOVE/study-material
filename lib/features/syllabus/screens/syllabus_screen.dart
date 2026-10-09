@@ -1,6 +1,6 @@
-﻿import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../core/widgets/glass_container.dart';
+import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SyllabusScreen extends StatefulWidget {
   const SyllabusScreen({super.key});

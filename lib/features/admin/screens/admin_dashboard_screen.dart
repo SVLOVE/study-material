@@ -1,8 +1,8 @@
-﻿import 'package:flutter/material.dart';
+import '../../../core/widgets/glass_container.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../core/widgets/glass_container.dart';
 
 class AdminDashboardScreen extends StatelessWidget {
   const AdminDashboardScreen({super.key});
@@ -89,6 +89,15 @@ class AdminDashboardScreen extends StatelessWidget {
                         color: Colors.orangeAccent,
                         onTap: () {
                           context.push('/admin/manage-syllabus');
+                        },
+                      ),
+                      _buildAdminCard(
+                        context,
+                        icon: Icons.health_and_safety,
+                        title: 'Operational Health',
+                        color: Colors.blueAccent,
+                        onTap: () {
+                          context.push('/admin/operational-health');
                         },
                       ),
                     ],

@@ -41,6 +41,7 @@ dependencies:
   device_info_plus: ^13.2.0
   file_picker: ^13.1.0
   syncfusion_flutter_pdfviewer: ^34.2.9
+  intl: ^0.20.3
 
 dev_dependencies:
   flutter_test:

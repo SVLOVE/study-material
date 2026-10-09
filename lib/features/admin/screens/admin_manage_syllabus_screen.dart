@@ -1,6 +1,5 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../../../core/widgets/glass_container.dart';
 import '../../../core/widgets/glow_button.dart';
 
 class AdminManageSyllabusScreen extends StatefulWidget {

@@ -120,7 +120,8 @@ class _HomeDashboardScreenState extends State<HomeDashboardScreen> {
       backgroundColor: Colors.transparent,
       elevation: 0,
       actions: [
-IconButton(icon: const Icon(Icons.notifications_none, color: Colors.white), onPressed: () {}),
+        IconButton(icon: const Icon(Icons.search, color: Colors.white), onPressed: () => context.push('/search')),
+        IconButton(icon: const Icon(Icons.notifications_none, color: Colors.white), onPressed: () {}),
         IconButton(
           icon: const Icon(Icons.logout, color: Colors.white),
           onPressed: () async {
@@ -144,7 +145,7 @@ IconButton(icon: const Icon(Icons.notifications_none, color: Colors.white), onPr
   }
 
   Widget _buildTargetCard() {
-    return GlassContainer(
+    return GestureDetector(onTap: () => context.push('/exams/exam-123/dashboard'), child: GlassContainer(
       blur: 20,
       opacity: 0.15,
       padding: const EdgeInsets.all(24),
@@ -172,7 +173,7 @@ IconButton(icon: const Icon(Icons.notifications_none, color: Colors.white), onPr
           ),
           Container(
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
+              color: Colors.white.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: IconButton(
@@ -182,11 +183,11 @@ IconButton(icon: const Icon(Icons.notifications_none, color: Colors.white), onPr
           )
         ],
       ),
-    );
+    ));
   }
 
   Widget _buildDailyGoal() {
-    return GlassContainer(
+    return GestureDetector(onTap: () => context.push('/exams/exam-123/dashboard'), child: GlassContainer(
       blur: 15,
       opacity: 0.05,
       padding: const EdgeInsets.all(20),
@@ -204,14 +205,14 @@ IconButton(icon: const Icon(Icons.notifications_none, color: Colors.white), onPr
             borderRadius: BorderRadius.circular(10),
             child: LinearProgressIndicator(
               value: 24 / 50,
-              backgroundColor: Colors.white.withOpacity(0.1),
+              backgroundColor: Colors.white.withValues(alpha: 0.1),
               valueColor: const AlwaysStoppedAnimation<Color>(Colors.pinkAccent),
               minHeight: 12,
             ),
           ),
         ],
       ),
-    );
+    ));
   }
 
   Widget _buildModulesGrid() {
@@ -223,12 +224,15 @@ IconButton(icon: const Icon(Icons.notifications_none, color: Colors.white), onPr
       crossAxisSpacing: 16,
       childAspectRatio: 1.1,
       children: [
-        _buildModuleCard('Study Materials', Icons.menu_book, Colors.blueAccent, onTap: () => context.push('/study-materials')),
+        _buildModuleCard('Revision Center', Icons.published_with_changes, Colors.blueAccent, onTap: () => context.push('/revision')),
         _buildModuleCard('Practice', Icons.quiz, Colors.orangeAccent),
+        _buildModuleCard('Flashcards', Icons.style, Colors.amberAccent, onTap: () => context.push('/flashcards')),
         _buildModuleCard('Mock Tests', Icons.timer, Colors.pinkAccent),
-        _buildModuleCard('Current Affairs', Icons.public, Colors.greenAccent),
-        _buildModuleCard('PYQs', Icons.history, Colors.purpleAccent),
-        _buildModuleCard('Analytics', Icons.bar_chart, Colors.cyanAccent),
+        _buildModuleCard('Study Planner', Icons.calendar_month_outlined, Colors.greenAccent, onTap: () => context.push('/study-planner')),
+        _buildModuleCard('Question Bank', Icons.library_books, Colors.purpleAccent, onTap: () => context.push('/question-bank')),
+        _buildModuleCard('Current Affairs', Icons.newspaper, Colors.redAccent, onTap: () => context.push('/current-affairs')),
+        _buildModuleCard('Leaderboard', Icons.leaderboard, Colors.cyanAccent, onTap: () => context.push('/leaderboard')),
+        _buildModuleCard('Exam Calendar', Icons.event_available, Colors.indigoAccent, onTap: () => context.push('/exam-calendar')),
       ],
     );
   }
@@ -248,9 +252,9 @@ IconButton(icon: const Icon(Icons.notifications_none, color: Colors.white), onPr
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: glowColor.withOpacity(0.15),
+                color: glowColor.withValues(alpha: 0.15),
                 boxShadow: [
-                  BoxShadow(color: glowColor.withOpacity(0.3), blurRadius: 15, spreadRadius: 2),
+                  BoxShadow(color: glowColor.withValues(alpha: 0.3), blurRadius: 15, spreadRadius: 2),
                 ],
               ),
               child: Icon(icon, color: glowColor, size: 32),
